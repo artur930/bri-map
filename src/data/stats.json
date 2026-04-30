@@ -1,0 +1,120 @@
+{
+  "overview": {
+    "totalInvestment": 1000,
+    "investmentUnit": "billion USD",
+    "participatingCountries": 152,
+    "projectsCompleted": 3000,
+    "projectsOngoing": 1800,
+    "tradeVolume": 2800,
+    "tradeUnit": "billion USD/year",
+    "jobsCreated": 420000,
+    "lastUpdated": "2024"
+  },
+  "regions": [
+    {
+      "name": "East Asia",
+      "countries": 3,
+      "investment": 280,
+      "investmentUnit": "billion USD",
+      "keyProjects": 145,
+      "tradeShare": 42,
+      "color": "#ef4444",
+      "stats": {
+        "ports": 8,
+        "airports": 5,
+        "railways": 12,
+        "highways": 18
+      }
+    },
+    {
+      "name": "Southeast Asia",
+      "countries": 10,
+      "investment": 155,
+      "investmentUnit": "billion USD",
+      "keyProjects": 234,
+      "tradeShare": 18,
+      "color": "#f97316",
+      "stats": {
+        "ports": 12,
+        "airports": 8,
+        "railways": 6,
+        "highways": 14
+      }
+    },
+    {
+      "name": "South Asia",
+      "countries": 7,
+      "investment": 112,
+      "investmentUnit": "billion USD",
+      "keyProjects": 189,
+      "tradeShare": 12,
+      "color": "#eab308",
+      "stats": {
+        "ports": 9,
+        "airports": 6,
+        "railways": 8,
+        "highways": 21
+      }
+    },
+    {
+      "name": "Central Asia",
+      "countries": 6,
+      "investment": 68,
+      "investmentUnit": "billion USD",
+      "keyProjects": 98,
+      "tradeShare": 6,
+      "color": "#22c55e",
+      "stats": {
+        "ports": 2,
+        "airports": 4,
+        "railways": 9,
+        "highways": 16
+      }
+    },
+    {
+      "name": "Middle East",
+      "countries": 18,
+      "investment": 198,
+      "investmentUnit": "billion USD",
+      "keyProjects": 267,
+      "tradeShare": 11,
+      "color": "#06b6d4",
+      "stats": {
+        "ports": 7,
+        "airports": 6,
+        "railways": 4,
+        "highways": 9
+      }
+    },
+    {
+      "name": "Africa",
+      "countries": 49,
+      "investment": 89,
+      "investmentUnit": "billion USD",
+      "keyProjects": 312,
+      "tradeShare": 5,
+      "color": "#8b5cf6",
+      "stats": {
+        "ports": 11,
+        "airports": 7,
+        "railways": 15,
+        "highways": 28
+      }
+    },
+    {
+      "name": "Europe",
+      "countries": 26,
+      "investment": 98,
+      "investmentUnit": "billion USD",
+      "keyProjects": 178,
+      "tradeShare": 6,
+      "color": "#ec4899",
+      "stats": {
+        "ports": 6,
+        "airports": 5,
+        "railways": 11,
+        "highways": 13
+      }
+    }
+  ]
+}

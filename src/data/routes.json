@@ -1,0 +1,179 @@
+[
+  {
+    "id": "r001",
+    "name": "21st Century Maritime Silk Road",
+    "type": "maritime",
+    "color": "#0ea5e9",
+    "description": "The primary BRI maritime route connecting China's eastern coast through Southeast Asia, the Indian Ocean, to East Africa and the Mediterranean.",
+    "totalLength": 21000,
+    "lengthUnit": "km",
+    "keyPorts": ["p001", "p002", "p003", "p008", "p007", "p005"],
+    "waypoints": [
+      [31.2304, 121.4737],
+      [22.3193, 114.1694],
+      [1.2897, 103.8501],
+      [5.5481, 95.3230],
+      [6.9271, 79.8612],
+      [6.1242, 81.1185],
+      [11.5886, 43.1451],
+      [12.8628, 45.0357],
+      [25.2048, 55.2708],
+      [24.6877, 46.7219],
+      [26.2041, 50.6860],
+      [30.0626, 31.2497],
+      [32.3019, 32.3019],
+      [37.9453, 23.6477]
+    ],
+    "completionYear": 2015,
+    "status": "operational",
+    "region": "Global Maritime"
+  },
+  {
+    "id": "r002",
+    "name": "New Eurasian Land Bridge",
+    "type": "land",
+    "color": "#f59e0b",
+    "description": "The primary trans-continental rail corridor connecting China's eastern coast to Western Europe via Kazakhstan, Russia, and Poland.",
+    "totalLength": 11000,
+    "lengthUnit": "km",
+    "waypoints": [
+      [34.3416, 108.9398],
+      [37.8706, 100.8260],
+      [43.3521, 77.0405],
+      [51.1694, 71.4491],
+      [51.1801, 58.9897],
+      [55.7558, 37.6173],
+      [52.0977, 23.7679],
+      [52.2297, 21.0122],
+      [52.5200, 13.4050],
+      [50.0379, 8.5622],
+      [48.8566, 2.3522]
+    ],
+    "completionYear": 2017,
+    "status": "operational",
+    "region": "Eurasian Land"
+  },
+  {
+    "id": "r003",
+    "name": "China-Pakistan Economic Corridor (CPEC)",
+    "type": "land",
+    "color": "#10b981",
+    "description": "3,000 km economic corridor connecting Kashgar in China's Xinjiang to Gwadar Port on the Arabian Sea. $62 billion total investment.",
+    "totalLength": 3000,
+    "lengthUnit": "km",
+    "waypoints": [
+      [39.4748, 75.9922],
+      [37.1167, 74.8996],
+      [35.5000, 73.0000],
+      [33.7294, 73.0931],
+      [30.3753, 69.3451],
+      [27.0238, 68.1313],
+      [25.1216, 62.3254]
+    ],
+    "completionYear": 2030,
+    "status": "under_construction",
+    "region": "South Asia"
+  },
+  {
+    "id": "r004",
+    "name": "China-Central Asia-West Asia Corridor",
+    "type": "land",
+    "color": "#8b5cf6",
+    "description": "Land corridor linking China through Central Asia to Turkey and the Persian Gulf, connecting 6+ nations along the ancient Silk Road.",
+    "totalLength": 6500,
+    "lengthUnit": "km",
+    "waypoints": [
+      [43.8041, 87.3594],
+      [43.3521, 77.0405],
+      [41.2995, 69.2401],
+      [37.9601, 58.3261],
+      [35.6892, 51.3890],
+      [36.2605, 43.8989],
+      [33.3152, 44.3661],
+      [41.2608, 28.7418]
+    ],
+    "completionYear": 2025,
+    "status": "under_construction",
+    "region": "Central Asia"
+  },
+  {
+    "id": "r005",
+    "name": "Bangladesh-China-India-Myanmar Economic Corridor",
+    "type": "land",
+    "color": "#ef4444",
+    "description": "Proposed economic corridor connecting Yunnan Province in China through Myanmar and Bangladesh to India's northeast.",
+    "totalLength": 2800,
+    "lengthUnit": "km",
+    "waypoints": [
+      [25.0450, 102.7100],
+      [22.0000, 98.0000],
+      [19.7633, 96.0785],
+      [23.6850, 90.3563],
+      [22.3475, 91.8123]
+    ],
+    "completionYear": 2035,
+    "status": "planned",
+    "region": "South Asia"
+  },
+  {
+    "id": "r006",
+    "name": "China-Indochina Peninsula Economic Corridor",
+    "type": "land",
+    "color": "#f97316",
+    "description": "Corridor linking Yunnan Province through Myanmar, Thailand, and Malaysia to Singapore. Includes the Laos-China Railway.",
+    "totalLength": 3900,
+    "lengthUnit": "km",
+    "waypoints": [
+      [25.0450, 102.7100],
+      [22.3906, 103.9700],
+      [18.7061, 98.9817],
+      [13.7563, 100.5018],
+      [3.1390, 101.6869],
+      [1.3521, 103.8198]
+    ],
+    "completionYear": 2025,
+    "status": "under_construction",
+    "region": "Southeast Asia"
+  },
+  {
+    "id": "r007",
+    "name": "Maritime Route - Africa Extension",
+    "type": "maritime",
+    "color": "#06b6d4",
+    "description": "BRI Maritime extension connecting the Indian Ocean routes to East and West Africa, supporting China's growing African infrastructure investments.",
+    "totalLength": 8500,
+    "lengthUnit": "km",
+    "waypoints": [
+      [11.5886, 43.1451],
+      [-4.0435, 39.6682],
+      [-6.8235, 39.2883],
+      [-11.7024, 43.2551],
+      [-18.9100, 47.5361],
+      [-25.7479, 28.2293]
+    ],
+    "completionYear": 2018,
+    "status": "operational",
+    "region": "Africa Maritime"
+  },
+  {
+    "id": "r008",
+    "name": "Trans-Siberian & Northern Route",
+    "type": "land",
+    "color": "#64748b",
+    "description": "Northern land corridor via Russia connecting China to Europe along the Trans-Siberian Railway corridor.",
+    "totalLength": 9200,
+    "lengthUnit": "km",
+    "waypoints": [
+      [43.8041, 87.3594],
+      [52.2905, 104.2964],
+      [56.0184, 92.8672],
+      [56.8519, 60.6122],
+      [55.7558, 37.6173],
+      [54.6870, 25.2798],
+      [52.5200, 13.4050]
+    ],
+    "completionYear": 2016,
+    "status": "operational",
+    "region": "Northern Eurasia"
+  }
+]

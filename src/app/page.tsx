@@ -1,0 +1,96 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+import { useState, useCallback } from 'react';
+
+import ControlPanel from '@/components/ControlPanel';
+import InfoPanel from '@/components/InfoPanel';
+import StatsPanel from '@/components/StatsPanel';
+
+import portsData from '@/data/ports.json';
+import airportsData from '@/data/airports.json';
+import citiesData from '@/data/cities.json';
+import routesData from '@/data/routes.json';
+import statsData from '@/data/stats.json';
+
+import { MapFeature, Route, LayerVisibility } from '@/types';
+
+// Dynamically import the map to avoid SSR issues with Leaflet
+const MapComponent = dynamic(() => import('@/components/MapComponent'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full flex items-center justify-center bg-slate-900">
+      <div className="text-center">
+        <div className="w-12 h-12 border-2 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-slate-400 text-sm">Loading map...</p>
+      </div>
+    </div>
+  ),
+});
+
+const allFeatures: MapFeature[] = [
+  ...(portsData as MapFeature[]),
+  ...(airportsData as MapFeature[]),
+  ...(citiesData as MapFeature[]),
+];
+
+const allRoutes: Route[] = routesData as Route[];
+
+const DEFAULT_LAYERS: LayerVisibility = {
+  maritime: true,
+  land: true,
+  ports: true,
+  airports: true,
+  cities: true,
+};
+
+export default function HomePage() {
+  const [layers, setLayers] = useState<LayerVisibility>(DEFAULT_LAYERS);
+  const [selectedFeature, setSelectedFeature] = useState<MapFeature | null>(null);
+  const [resetKey, setResetKey] = useState(0);
+
+  const handleToggle = useCallback((key: keyof LayerVisibility) => {
+    setLayers((prev) => ({ ...prev, [key]: !prev[key] }));
+  }, []);
+
+  const handleFeatureClick = useCallback((feature: MapFeature) => {
+    setSelectedFeature((prev) => (prev?.id === feature.id ? null : feature));
+  }, []);
+
+  const handleClose = useCallback(() => setSelectedFeature(null), []);
+
+  const handleResetView = useCallback(() => {
+    setSelectedFeature(null);
+    setResetKey((k) => k + 1);
+  }, []);
+
+  return (
+    <main className="relative h-screen w-screen overflow-hidden bg-slate-900">
+      {/* Map */}
+      <div className="absolute inset-0">
+        <MapComponent
+          key={resetKey}
+          features={allFeatures}
+          routes={allRoutes}
+          layers={layers}
+          onFeatureClick={handleFeatureClick}
+          selectedFeature={selectedFeature}
+        />
+      </div>
+
+      {/* UI Overlays */}
+      <ControlPanel layers={layers} onToggle={handleToggle} onResetView={handleResetView} />
+      <InfoPanel feature={selectedFeature} onClose={handleClose} />
+      <StatsPanel overview={statsData.overview as any} regions={statsData.regions as any} />
+
+      {/* Click hint */}
+      {!selectedFeature && (
+        <div className="absolute bottom-8 right-4 z-[400] pointer-events-none">
+          <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700/50 rounded-xl px-3 py-2">
+            <p className="text-xs text-slate-400">Click any marker for details</p>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
