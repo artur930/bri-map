@@ -19,10 +19,10 @@ import { MapFeature, Route, LayerVisibility } from '@/types';
 const MapComponent = dynamic(() => import('@/components/MapComponent'), {
   ssr: false,
   loading: () => (
-    <div className="h-full w-full flex items-center justify-center bg-slate-900">
+    <div className="h-full w-full flex items-center justify-center bg-amber-50">
       <div className="text-center">
-        <div className="w-12 h-12 border-2 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-slate-400 text-sm">Loading map...</p>
+        <div className="w-12 h-12 border-2 border-orange-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-amber-700 text-sm">Loading map...</p>
       </div>
     </div>
   ),
@@ -65,7 +65,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-slate-900">
+    <main className="relative h-screen w-screen overflow-hidden" style={{ background: '#faf7f2' }}>
       {/* Map */}
       <div className="absolute inset-0">
         <MapComponent
@@ -86,11 +86,11 @@ export default function HomePage() {
       {/* Click hint */}
       {!selectedFeature && (
         <div className="absolute bottom-8 right-4 z-[400] pointer-events-none">
-          <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700/50 rounded-xl px-3 py-2">
-            <p className="text-xs text-slate-400">Click any marker for details</p>
+          <div className="backdrop-blur-md rounded-xl px-3 py-2" style={{ background: 'rgba(255,252,245,0.9)', border: '1px solid rgba(210,185,150,0.6)' }}>
+            <p className="text-xs" style={{ color: '#7c5c3e' }}>Click any marker for details</p>
           </div>
         </div>
       )}
     </main>
   );
-}
+  }
