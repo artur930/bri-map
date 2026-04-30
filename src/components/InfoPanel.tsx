@@ -24,6 +24,8 @@ export default function InfoPanel({ feature, onClose }: InfoPanelProps) {
 
   const icon = TYPE_ICONS[feature.type] || '📍';
   const color = TYPE_COLORS[feature.type] || '#e8622a';
+  // Use type cast to access extended properties
+  const ext = feature as unknown as Record<string, unknown>;
 
   return (
     <div
@@ -38,7 +40,7 @@ export default function InfoPanel({ feature, onClose }: InfoPanelProps) {
       <div
         className="px-4 py-3 flex items-start gap-3"
         style={{
-          background: `${color}15`,
+          background: color + '15',
           borderBottom: '1px solid rgba(210, 185, 150, 0.5)',
         }}
       >
@@ -54,10 +56,7 @@ export default function InfoPanel({ feature, onClose }: InfoPanelProps) {
         <button
           onClick={onClose}
           className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all mt-0.5 flex-shrink-0"
-          style={{
-            background: 'rgba(160, 120, 80, 0.2)',
-            color: '#7c5c3e',
-          }}
+          style={{ background: 'rgba(160, 120, 80, 0.2)', color: '#7c5c3e' }}
         >
           ×
         </button>
@@ -68,49 +67,49 @@ export default function InfoPanel({ feature, onClose }: InfoPanelProps) {
         <div className="flex items-center gap-2">
           <span
             className="px-2 py-0.5 rounded-full text-xs font-medium capitalize"
-            style={{ background: `${color}20`, color: color }}
+            style={{ background: color + '20', color: color }}
           >
             {feature.type}
           </span>
         </div>
 
-        {feature.description && (
+        {ext.description && (
           <p className="text-xs leading-relaxed" style={{ color: '#5c4030' }}>
-            {feature.description}
+            {String(ext.description)}
           </p>
         )}
 
-        {feature.capacity && (
+        {ext.capacity && (
           <div
             className="flex items-center justify-between px-3 py-2 rounded-xl"
             style={{ background: 'rgba(240, 230, 210, 0.6)' }}
           >
             <span className="text-xs" style={{ color: '#7c5c3e' }}>Capacity</span>
             <span className="text-xs font-semibold" style={{ color: '#3d2408' }}>
-              {feature.capacity}
+              {String(ext.capacity)}
             </span>
           </div>
         )}
 
-        {feature.investmentBn && (
+        {ext.investmentBn && (
           <div
             className="flex items-center justify-between px-3 py-2 rounded-xl"
             style={{ background: 'rgba(240, 230, 210, 0.6)' }}
           >
             <span className="text-xs" style={{ color: '#7c5c3e' }}>BRI Investment</span>
             <span className="text-xs font-semibold" style={{ color: '#e8622a' }}>
-              ${feature.investmentBn}B
+              ${String(ext.investmentBn)}B
             </span>
           </div>
         )}
 
-        {feature.connectedRoutes && feature.connectedRoutes.length > 0 && (
+        {Array.isArray(ext.connectedRoutes) && ext.connectedRoutes.length > 0 && (
           <div>
             <p className="text-xs font-medium mb-1" style={{ color: '#7c5c3e' }}>
               Connected Routes
             </p>
             <div className="flex flex-wrap gap-1">
-              {feature.connectedRoutes.map((route) => (
+              {(ext.connectedRoutes as string[]).map((route) => (
                 <span
                   key={route}
                   className="px-2 py-0.5 rounded-full text-xs"
@@ -129,4 +128,4 @@ export default function InfoPanel({ feature, onClose }: InfoPanelProps) {
       </div>
     </div>
   );
-            }
+      }
