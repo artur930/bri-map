@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useState, useCallback } from 'react';
 
 import ControlPanel from '@/components/ControlPanel';
@@ -91,6 +92,26 @@ export default function HomePage() {
           </div>
         </div>
       )}
+
+      {/* Schedule nav */}
+      <div className="absolute top-4 right-4 z-[500]">
+        <Link
+          href="/schedule"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '7px 14px', borderRadius: 10,
+            background: 'rgba(255,252,245,0.92)',
+            border: '1px solid rgba(210,185,150,0.7)',
+            backdropFilter: 'blur(8px)',
+            color: '#7c5c3e',
+            fontSize: 12, fontWeight: 600,
+            textDecoration: 'none',
+            boxShadow: '0 2px 12px rgba(100,60,20,0.12)',
+          }}
+        >
+          ✦ Schedule
+        </Link>
+      </div>
     </main>
   );
   }
