@@ -9,6 +9,7 @@ interface TimelineSliderProps {
 
 const MIN_YEAR = 2013;
 const MAX_YEAR = 2026;
+const GATE_YEARS = [2013, 2016, 2019, 2022, 2026];
 
 export default function TimelineSlider({ year, onYearChange }: TimelineSliderProps) {
   const [playing, setPlaying] = useState(false);
@@ -24,7 +25,7 @@ export default function TimelineSlider({ year, onYearChange }: TimelineSliderPro
           }
           return prev + 1;
         });
-      }, 800);
+      }, 700);
     } else {
       if (intervalRef.current) clearInterval(intervalRef.current);
     }
@@ -36,11 +37,12 @@ export default function TimelineSlider({ year, onYearChange }: TimelineSliderPro
   const pct = ((year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
 
   return (
-    <div className="h-9 bg-[#0a0e1a] border-t border-[#1a2235] flex items-center gap-4 px-4 flex-shrink-0">
-      {/* Play button */}
+    <div className="h-9 bg-[#0a0e1a] border-t border-[#1a2235] flex items-center gap-3 px-4 flex-shrink-0">
+      {/* Play/Pause button */}
       <button
         onClick={() => setPlaying(p => !p)}
-        className="w-6 h-6 flex items-center justify-center rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 hover:bg-orange-500/30 transition-colors flex-shrink-0"
+        className="w-6 h-6 flex items-center justify-center rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-400 hover:bg-orange-500/25 transition-colors flex-shrink-0"
+        title={playing ? 'Pause' : 'Play timeline'}
       >
         {playing ? (
           <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
@@ -54,22 +56,35 @@ export default function TimelineSlider({ year, onYearChange }: TimelineSliderPro
       </button>
 
       {/* Year display */}
-      <div className="w-12 text-center flex-shrink-0">
-        <span className="text-[13px] font-bold text-orange-400 font-mono tabular-nums">{year}</span>
-      </div>
+      <span className="text-[14px] font-bold text-orange-400 font-mono tabular-nums flex-shrink-0 w-10 text-center">
+        {year}
+      </span>
 
-      {/* Slider track */}
-      <div className="flex-1 relative flex items-center gap-1">
-        {/* Year ticks */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
-          {Array.from({ length: MAX_YEAR - MIN_YEAR + 1 }, (_, i) => MIN_YEAR + i).map(y => (
-            <div
-              key={y}
-              className={`w-px transition-all ${
-                y <= year ? 'bg-orange-500/60' : 'bg-[#1a2235]'
-              } ${y % 2 === 0 ? 'h-2.5' : 'h-1.5'}`}
-            />
-          ))}
+      {/* Slider track + gate markers */}
+      <div className="flex-1 relative" style={{ paddingBottom: '12px' }}>
+        {/* Gate year tick marks */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 pointer-events-none" style={{ marginBottom: '12px' }}>
+          {GATE_YEARS.map(gy => {
+            const pos = ((gy - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
+            return (
+              <div
+                key={gy}
+                className="absolute -translate-x-1/2"
+                style={{ left: `${pos}%`, top: '-8px' }}
+              >
+                <div
+                  className="w-px h-3 mx-auto"
+                  style={{ backgroundColor: gy <= year ? '#f97316' : '#1a2235' }}
+                />
+                <span
+                  className="text-[7px] font-mono tabular-nums"
+                  style={{ color: gy <= year ? '#6b7280' : '#374151' }}
+                >
+                  {gy}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
         <input
@@ -80,19 +95,16 @@ export default function TimelineSlider({ year, onYearChange }: TimelineSliderPro
           value={year}
           onChange={e => onYearChange(Number(e.target.value))}
           className="timeline-slider w-full"
+          style={{
+            background: `linear-gradient(to right, #f97316 0%, #f97316 ${pct}%, #1a2235 ${pct}%, #1a2235 100%)`,
+          }}
         />
       </div>
 
-      {/* Year labels */}
-      <div className="flex items-center gap-4 flex-shrink-0">
-        <span className="text-[9px] text-slate-600 font-mono">{MIN_YEAR}</span>
-        <span className="text-[9px] text-slate-600 font-mono">→</span>
-        <span className="text-[9px] text-slate-600 font-mono">{MAX_YEAR}</span>
-      </div>
-
-      <div className="text-[9px] text-slate-600 flex-shrink-0">
-        Showing projects added by <span className="text-orange-400 font-mono font-bold">{year}</span>
-      </div>
+      {/* Info text */}
+      <span className="text-[9px] text-slate-600 flex-shrink-0 font-mono">
+        Showing projects by <span className="text-orange-500 font-bold">{year}</span>
+      </span>
     </div>
   );
 }

@@ -21,37 +21,54 @@ html, body {
 }
 
 .leaflet-control-attribution {
-  background: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(255,255,255,0.7) !important;
   color: #9ca3af !important;
   font-size: 9px !important;
   border-radius: 4px 0 0 0 !important;
   padding: 2px 6px !important;
 }
-
 .leaflet-control-attribution a { color: #6b7280 !important; }
+
+/* ─── ANIMATED MARITIME DASH ───────────────────────── */
+/*
+  Leaflet polylines render as SVG <path> elements.
+  We target them via the .animated-dash class set in pathOptions.
+  The animation shifts stroke-dashoffset to create a flowing effect.
+*/
+@keyframes dash-flow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -100; }
+}
+
+.leaflet-overlay-pane svg path.animated-dash {
+  animation: dash-flow 8s linear infinite;
+}
+
+/* Also target without pane scope for compatibility */
+path.animated-dash {
+  animation: dash-flow 8s linear infinite;
+}
 
 /* ─── BRI POPUP ────────────────────────────────────── */
 .bri-popup .leaflet-popup-content-wrapper {
   background: #0d111c;
   border: 1px solid #1e2a3a;
   border-radius: 10px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
   padding: 0;
   min-width: 200px;
 }
 
-.bri-popup .leaflet-popup-tip-container {
-  display: none;
-}
+.bri-popup .leaflet-popup-tip-container { display: none; }
+
+.bri-popup .leaflet-popup-close-button { display: none !important; }
 
 .bri-popup .leaflet-popup-content {
   margin: 0;
   line-height: 1;
 }
 
-.bri-popup-inner {
-  padding: 12px;
-}
+.bri-popup-inner { padding: 12px; }
 
 .bri-popup-header {
   display: flex;
@@ -69,13 +86,15 @@ html, body {
 }
 
 .bri-popup-country {
-  font-size: 9px;
+  font-size: 8px;
   color: #475569;
   background: #111827;
   border: 1px solid #1e2a3a;
   border-radius: 4px;
   padding: 1px 5px;
   white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .bri-popup-dot {
@@ -91,12 +110,12 @@ html, body {
   align-items: center;
   padding: 4px 0;
   font-size: 11px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
   gap: 8px;
 }
 
 .bri-popup-row span:first-child { color: #475569; white-space: nowrap; }
-.bri-popup-row span:last-child { color: #cbd5e1; text-align: right; }
+.bri-popup-row span:last-child  { color: #cbd5e1; text-align: right; }
 
 .bri-popup-year {
   margin-top: 8px;
@@ -106,23 +125,15 @@ html, body {
   font-variant-numeric: tabular-nums;
 }
 
-/* ─── ANIMATED DASHED MARITIME ROUTE ──────────────── */
-@keyframes dash-flow {
-  to { stroke-dashoffset: -200; }
-}
-
-.animated-dash {
-  animation: dash-flow 12s linear infinite;
-}
-
-/* ─── TICKER ───────────────────────────────────────── */
+/* ─── TICKER MARQUEE ───────────────────────────────── */
 @keyframes ticker-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 .ticker-track {
-  animation: ticker-scroll 60s linear infinite;
+  display: inline-block;
+  animation: ticker-scroll 55s linear infinite;
   will-change: transform;
 }
 
@@ -132,33 +143,29 @@ html, body {
   appearance: none;
   width: 100%;
   height: 2px;
-  background: transparent;
+  border-radius: 1px;
   outline: none;
   cursor: pointer;
-  position: relative;
-  z-index: 1;
 }
 
 .timeline-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: #f97316;
   cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 2px #f97316, 0 2px 8px rgba(249, 115, 22, 0.4);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px #f97316, 0 2px 6px rgba(249,115,22,0.4);
   transition: transform 0.1s;
 }
 
-.timeline-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-}
+.timeline-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
 
 .timeline-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: #f97316;
   cursor: pointer;
@@ -172,7 +179,7 @@ html, body {
   scrollbar-color: #1e2a3a transparent;
 }
 
-.custom-scroll::-webkit-scrollbar { width: 4px; }
+.custom-scroll::-webkit-scrollbar { width: 3px; }
 .custom-scroll::-webkit-scrollbar-track { background: transparent; }
 .custom-scroll::-webkit-scrollbar-thumb {
   background: #1e2a3a;
